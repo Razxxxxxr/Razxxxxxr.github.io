@@ -1,0 +1,84 @@
+#include<iostream>
+using namespace std;
+
+class Node{
+    public:
+    int value;
+    Node* prev;
+    Node* next;
+    Node(int val){
+        values = val;
+        prev = NULL;
+        next = NULL;
+    }
+};
+
+Node* insertAtBeginning(Node* head,int value){
+    Node* newNode = new Node(value);
+    if(!head){
+        head=newNode;
+    }
+    else{
+        newNode->next = head;
+        head->prev 
+    }
+}
+
+void insertAtEnd(Node* head, int value){
+    if(head == NULL){
+        Node* newNode = new Node(value);
+        newNode->next = newNode->prev = newNode;
+        *start = newNode;
+    }
+    else{
+        Node* tail = head->prev;
+        Node* newNode = new Node(value);
+        newNode->next = head;
+        head->prev = newNode;
+        newNode->prev = tail;
+        tail->next = newNode;
+    }
+}
+void insertAtBeginning(Node* head, int value)
+{
+    Node* tail = head->prev;
+    Node* newNode = new Node(value);
+    newNode->next = head;
+    newNode->prev = tail;
+    tail->next = head->prev = newNode;
+    head = newNode;
+}
+void display(Node* head)
+{
+    Node* temp = head;
+ 
+    cout << "\nTraversal in forward direction \n";
+    while (temp->next != head) {
+        cout << temp->value);
+        temp = temp->next;
+    }
+    cout << temp->value);
+ 
+    cout << "\nTraversal in reverse direction \n";
+    Node* tail = head->prev;
+    temp = tail;
+    while (temp->prev != tail) {
+        cout << temp->value;
+        temp = temp->prev;
+    }
+    cout << temp->value;
+}
+
+int main()
+{
+    Node* head = NULL;
+    insertAtEnd(head, 5);
+    insertAtBeginning(head, 4);
+    insertAtEnd(head, 7);
+    insertAtEnd(head, 8);
+ 
+    cout << "Created circular doubly linked list is: ";
+    display(head);
+ 
+    return 0;
+}
